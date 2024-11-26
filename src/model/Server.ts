@@ -1,16 +1,27 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+import connectDB from '../db/conection';
+import authRoute from '../routes/auth.route';
+import errorMDBHandler from '../middlewares/errorMDBHandler';
 
 class Server {
     private app: Application;
     private PORT: number;
 
+    private prefix: string = 'api';
+    private version: string = 'v1';
+
+    private routes: { [key: string]: string } = {
+        auth: 'auth',
+    };
+
     constructor(port: number) {
         this.PORT = port;
         this.app = express();
         this.middlewares();
-        this.connectDB();
-        this.routes();
+        this.loadDB()
+        this.loadRoutes();
+        this.app.use(errorMDBHandler);
     }
 
     private middlewares(): void {
@@ -19,13 +30,13 @@ class Server {
         this.app.use(express.urlencoded({ extended: true }));
     }
 
-    private async connectDB(): Promise<void> {
-        
+    private async loadDB(): Promise<void> {
+        connectDB();
     }
 
 
-    private routes(): void {
-        
+    private loadRoutes(): void {
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.auth}`, authRoute);
     }
 
     public run(): void {
