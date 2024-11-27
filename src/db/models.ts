@@ -5,6 +5,7 @@ export interface IUser extends Document {
   name: string; 
   email: string;
   password: string;
+  sessionToken?: string;
   role: 'Admin' | 'User'; 
 }
 
@@ -13,6 +14,7 @@ const UserSchema: Schema = new Schema({
   name: { type: String, required: true }, 
   email: { type: String, required: true, unique: true }, 
   password: { type: String, required: true }, 
+  sessionToken: { type: String  , nullable: true },
   role: { type: String, enum: ['Admin', 'User'], required: true }, 
 });
 
