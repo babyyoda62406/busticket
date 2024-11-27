@@ -1,8 +1,10 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import connectDB from '../db/conection';
-import authRoute from '../routes/auth.route';
 import errorMDBHandler from '../middlewares/errorMDBHandler';
+
+import authRoute from '../routes/auth.route';
+import busRoute from '../routes/bus.route';
 
 class Server {
     private app: Application;
@@ -13,6 +15,7 @@ class Server {
 
     private routes: { [key: string]: string } = {
         auth: 'auth',
+        bus: 'bus'
     };
 
     constructor(port: number) {
@@ -37,6 +40,7 @@ class Server {
 
     private loadRoutes(): void {
         this.app.use(`/${this.prefix}/${this.version}/${this.routes.auth}`, authRoute);
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.bus}`, busRoute);
     }
 
     public run(): void {

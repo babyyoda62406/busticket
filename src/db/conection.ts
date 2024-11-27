@@ -17,17 +17,16 @@ const connectDB = async () => {
     const dbExists = databasesList.databases.some(database => database.name === 'busticket');
 
     if (!dbExists) {
-      // Crear la base de datos 'busticket'
-      await db.createCollection('dummy'); // Crear una colección temporal para forzar la creación de la base de datos
-      console.log('Base de datos "busticket" creada');
-      await db.dropCollection('dummy'); // Eliminar la colección temporal
+      await db.createCollection('dummy'); 
+      console.log('Database "busticket" created');
+      await db.dropCollection('dummy'); 
     } else {
-      console.log('La base de datos "busticket" ya existe');
+      console.log('Database "busticket" already exists');
     }
 
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
-    process.exit(1); // Salir del proceso en caso de error
+    process.exit(1); 
   }
 };
 

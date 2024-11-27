@@ -19,7 +19,6 @@ const errorMDBHandler = (err: any, req: Request, res: Response, next: NextFuncti
 
     if (err.name === 'MongoServerError') {
         const error: MongooseError & CustomError = err;
-
         switch (error.code) {
             case 11000:
                 statusCode = 409;
@@ -39,7 +38,14 @@ const errorMDBHandler = (err: any, req: Request, res: Response, next: NextFuncti
             stack
         });
 
-    } else {
+    } else if(err.name === 'CastError' && err.kind == 'ObjectId') {
+        statusCode = 400;
+        message = 'Invalid ObjectId';
+        res.status(statusCode).json({
+            message, 
+            details: err.message
+        });
+    }else {
         res.status(statusCode).json({
             message: message, 
             err

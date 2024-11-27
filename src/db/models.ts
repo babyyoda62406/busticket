@@ -19,10 +19,18 @@ const UserSchema: Schema = new Schema({
 });
 
 // Interface for the Bus model
+
+interface TimePeriod {
+  // The time perdiod are thinking in 24 hours format (HH)
+  // Example: start: 8 and end: 18 are the time period from 8:00 to 18:00
+  start: number;
+  end: number;
+}
 export interface IBus extends Document {
   name: string;
-  description: string; 
-  capacity: number; 
+  description: string;
+  capacity: number;
+  timePeriod: TimePeriod;
 }
 
 // Schema for the Bus model
@@ -30,6 +38,7 @@ const BusSchema: Schema = new Schema({
   name: { type: String, required: true }, 
   description: { type: String, required: true },
   capacity: { type: Number, required: true }, 
+  timePeriod: { start: { type: Number, required: true , min: 0, max: 23 }, end: { type: Number, required: true , min: 0, max: 23 } }
 });
 
 // Interface for the Ticket model
