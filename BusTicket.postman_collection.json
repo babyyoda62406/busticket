@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "ee66e40b-d09c-49cc-bba4-0ab3437f8dac",
+		"name": "BusTicket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20599905"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"name\":\"User 1\",\n    \"email\":\"user2@gmail.com\", \n    \"password\":\"A Strog Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"user1@gmail.com\", \n    \"password\":\"A Strog Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ3Y2ZlOGM0OTcxNDJhOGMxZmI5ODEiLCJpYXQiOjE3MzI3NTk2ODMsImV4cCI6MTczMjc2MzI4M30.Y25iR3mLSxE6gQiYaIjjaf_-_TtY-H-LXTpw0Gzb4o8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "bus",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ3Y2ZlOGM0OTcxNDJhOGMxZmI5ODEiLCJpYXQiOjE3MzI3NTk3MTksImV4cCI6MTczMjc2MzMxOX0.kKAh17HqRtcB7Mg-PG0DPkK5ZhdmLzncBIa5CiNphTk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Bus 1\", \n    \"description\":\"This is a bus place 1 to place 2\",\n    \"capacity\": 237,\n    \"start\":\"1\",\n    \"end\":\"12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/bus/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"bus",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ3Y2ZlOGM0OTcxNDJhOGMxZmI5ODEiLCJpYXQiOjE3MzI3NTk3MTksImV4cCI6MTczMjc2MzMxOX0.kKAh17HqRtcB7Mg-PG0DPkK5ZhdmLzncBIa5CiNphTk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Bus 12\", \n    \"description\":\"This is a bus place 1 to place 2\",\n    \"capacity\": 7\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/bus/6747d0b1c497142a8c1fb992",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"bus",
+										"6747d0b1c497142a8c1fb992"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ3Y2ZlOGM0OTcxNDJhOGMxZmI5ODEiLCJpYXQiOjE3MzI3NTk3MTksImV4cCI6MTczMjc2MzMxOX0.kKAh17HqRtcB7Mg-PG0DPkK5ZhdmLzncBIa5CiNphTk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/bus/6747d0b1c497142a8c1fb992",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"bus",
+										"6747d0b1c497142a8c1fb992"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ticket",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ3Y2ZlOGM0OTcxNDJhOGMxZmI5ODEiLCJpYXQiOjE3MzI3NTk3MTksImV4cCI6MTczMjc2MzMxOX0.kKAh17HqRtcB7Mg-PG0DPkK5ZhdmLzncBIa5CiNphTk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":\"40\",\n    \"busId\":\"6747d0b1c497142a8c1fb992\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/ticket",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"ticket"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ2N2U1YmU4ZDY1ZmY2MDE3MTI4MzAiLCJpYXQiOjE3MzI3NTIyOTIsImV4cCI6MTczMjc1NTg5Mn0._WM8vigZ3V-vLQ0uYG-9EDlJdiRB0YXu93OxGrP4OyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\":\"80\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/ticket/6747b3fe4666e6f27c5996e6",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"ticket",
+										"6747b3fe4666e6f27c5996e6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ2N2U1YmU4ZDY1ZmY2MDE3MTI4MzAiLCJpYXQiOjE3MzI3NTI1MzAsImV4cCI6MTczMjc1NjEzMH0.5978v4b-h9sEoUs3CeTd0XQcTFztbW3_aJLim4mFDiE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/ticket/sadf",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"ticket",
+										"sadf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "buses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ2N2U2MmU4ZDY1ZmY2MDE3MTI4MzMiLCJpYXQiOjE3MzI3NTYyNjcsImV4cCI6MTczMjc1OTg2N30.I6nmSAlcfpSBVT1FXQZlc_aV1WsTbTZRnQCVnNyOlgg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/buses?start=11&end=12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buses"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "11"
+								},
+								{
+									"key": "end",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ticket",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ2N2U2MmU4ZDY1ZmY2MDE3MTI4MzMiLCJpYXQiOjE3MzI3NTYyNjcsImV4cCI6MTczMjc1OTg2N30.I6nmSAlcfpSBVT1FXQZlc_aV1WsTbTZRnQCVnNyOlgg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tickets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "purchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NzQ2N2U2MmU4ZDY1ZmY2MDE3MTI4MzMiLCJpYXQiOjE3MzI3NTYyNjcsImV4cCI6MTczMjc1OTg2N30.I6nmSAlcfpSBVT1FXQZlc_aV1WsTbTZRnQCVnNyOlgg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"busId\":\"dfs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}//tickets/purchase",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"",
+								"tickets",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
