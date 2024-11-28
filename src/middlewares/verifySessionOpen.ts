@@ -4,7 +4,8 @@ import { User } from '../db/models';
 declare global {
     namespace Express {
         interface Request {
-            role: "Admin" | "User"
+            role: "Admin" | "User",
+            user_id: string,
         }
     }
 }
@@ -20,6 +21,7 @@ export const verifySessionOpen = async (req: Request, res: Response, next: NextF
             } else {
                 if (tempUser.sessionToken  === req.headers.token) {
                     req.role = tempUser.role
+                    req.user_id = uid;
                     next();
                 } else {
                     res.status(401).json({ message: 'This session are closed, please provide the token of your last session' });

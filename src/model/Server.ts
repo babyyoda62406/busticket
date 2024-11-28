@@ -5,6 +5,7 @@ import errorMDBHandler from '../middlewares/errorMDBHandler';
 
 import authRoute from '../routes/auth.route';
 import adminRoute from '../routes/admin.route';
+import userRoute from '../routes/user.route';
 
 class Server {
     private app: Application;
@@ -16,7 +17,7 @@ class Server {
     private routes: { [key: string]: string } = {
         auth: 'auth',
         admin: 'admin',
-        user: 'user',
+        user: '',
     };
 
     constructor(port: number) {
@@ -40,7 +41,8 @@ class Server {
 
     private loadRoutes(): void {
         this.app.use(`/${this.prefix}/${this.version}/${this.routes.auth}`, authRoute);
-        this.app.use(`/${this.prefix}/${this.version}/${this.routes.admin}`, adminRoute);
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.admin}`,  adminRoute);
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.user}`, userRoute);
     }
 
     public run(): void {
