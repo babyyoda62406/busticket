@@ -4,8 +4,7 @@ import connectDB from '../db/conection';
 import errorMDBHandler from '../middlewares/errorMDBHandler';
 
 import authRoute from '../routes/auth.route';
-import busRoute from '../routes/bus.route';
-import ticketRoute from '../routes/ticket.route';
+import adminRoute from '../routes/admin.route';
 
 class Server {
     private app: Application;
@@ -16,8 +15,8 @@ class Server {
 
     private routes: { [key: string]: string } = {
         auth: 'auth',
-        bus: 'bus',
-        ticket: 'ticket'
+        admin: 'admin',
+        user: 'user',
     };
 
     constructor(port: number) {
@@ -41,8 +40,7 @@ class Server {
 
     private loadRoutes(): void {
         this.app.use(`/${this.prefix}/${this.version}/${this.routes.auth}`, authRoute);
-        this.app.use(`/${this.prefix}/${this.version}/${this.routes.bus}`, busRoute);
-        this.app.use(`/${this.prefix}/${this.version}/${this.routes.ticket}`, ticketRoute);
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.admin}`, adminRoute);
     }
 
     public run(): void {

@@ -7,10 +7,13 @@ import { verifySessionOpen } from "../middlewares/verifySessionOpen";
 import { isAdmin } from "../middlewares/rolVerified";
 import { updateBus } from "../controllers/bus/updateBus";
 import { deleteBus } from "../controllers/bus/deleteBus";
+import addTicket from "../controllers/ticket/addTicket";
+import { deleteTicket } from "../controllers/ticket/deleteTicket";
+import { updateTicket } from "../controllers/ticket/updateTicket";
 
 const app = Router();
 
-app.post('/', [
+app.post('/bus', [
     verifyJWT,
     verifySessionOpen,
     isAdmin,
@@ -22,7 +25,7 @@ app.post('/', [
     validarCampos
 ], addBus);
 
-app.put('/:id', [
+app.put('/bus/:id', [
     verifyJWT,
     verifySessionOpen,
     isAdmin,
@@ -35,12 +38,35 @@ app.put('/:id', [
 ], updateBus);
 
 
-app.delete('/:id', [
+app.delete('/bus/:id', [
     verifyJWT,
     verifySessionOpen,
     isAdmin
 ],deleteBus)
 
+
+app.post('/ticket' , [
+    verifyJWT,
+    verifySessionOpen,
+    isAdmin,
+    check('price').not().isEmpty().withMessage('Price is required').isNumeric().withMessage('Price must be a numeric value'),
+    check('busId').not().isEmpty().withMessage('BusId is required'),
+    validarCampos
+] ,  addTicket)
+
+app.put('/ticket/:id' , [
+    verifyJWT,
+    verifySessionOpen,
+    isAdmin,
+    check('price').optional().not().isEmpty().withMessage('Price cannot be empty').isNumeric().withMessage('Price must be a numeric value'),
+    validarCampos
+] , updateTicket )
+
+app.delete('/ticket/:id' , [
+    verifyJWT,
+    verifySessionOpen,
+    isAdmin
+] ,  deleteTicket )
 
 
 export default app;
