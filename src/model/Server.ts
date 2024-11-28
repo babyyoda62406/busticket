@@ -5,6 +5,7 @@ import errorMDBHandler from '../middlewares/errorMDBHandler';
 
 import authRoute from '../routes/auth.route';
 import busRoute from '../routes/bus.route';
+import ticketRoute from '../routes/ticket.route';
 
 class Server {
     private app: Application;
@@ -15,7 +16,8 @@ class Server {
 
     private routes: { [key: string]: string } = {
         auth: 'auth',
-        bus: 'bus'
+        bus: 'bus',
+        ticket: 'ticket'
     };
 
     constructor(port: number) {
@@ -37,10 +39,10 @@ class Server {
         connectDB();
     }
 
-
     private loadRoutes(): void {
         this.app.use(`/${this.prefix}/${this.version}/${this.routes.auth}`, authRoute);
         this.app.use(`/${this.prefix}/${this.version}/${this.routes.bus}`, busRoute);
+        this.app.use(`/${this.prefix}/${this.version}/${this.routes.ticket}`, ticketRoute);
     }
 
     public run(): void {

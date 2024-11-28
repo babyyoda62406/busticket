@@ -44,7 +44,6 @@ const BusSchema: Schema = new Schema({
 // Interface for the Ticket model
 export interface ITicket extends Document {
   price: number; 
-  date_time: Date;
   busId: mongoose.Types.ObjectId; 
   userId?: mongoose.Types.ObjectId; 
 }
@@ -52,7 +51,6 @@ export interface ITicket extends Document {
 // Schema for the Ticket model
 const TicketSchema: Schema = new Schema({
   price: { type: Number, required: true },
-  date_time: { type: Date, required: true }, 
   busId: { type: mongoose.Types.ObjectId, ref: 'Bus', required: true },
   userId: { type: mongoose.Types.ObjectId, ref: 'User' }, 
 });
